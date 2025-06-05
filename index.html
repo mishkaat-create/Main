@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Happy Birthday, Fee! 🎉</title>
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Montserrat:wght@400;600&display=swap" rel="stylesheet" />
+
+<style>
+  /* Reset & Base */
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0; padding: 0;
+    background: #121212;
+    color: #ddd;
+    font-family: 'Montserrat', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+  h1, h2, h3 {
+    font-family: 'Fira Code', monospace;
+    color: #82aaff;
+    margin-bottom: 0.3em;
+  }
+  h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    text-align: center;
+    margin-top: 10px;
+  }
+  p {
+    line-height: 1.5;
+    margin: 0.8em 0;
+    max-width: 700px;
+    font-size: 1.15rem;
+  }
+  /* Container Boxes */
+  .container {
+    background: #1e1e2f;
+    border-radius: 12px;
+    padding: 25px 30px;
+    margin: 20px 0;
+    max-width: 750px;
+    box-shadow: 0 6px 16px rgba(130, 170, 255, 0.3);
+    transition: box-shadow 0.3s ease;
+  }
+  .container:hover {
+    box-shadow: 0 10px 30px rgba(130, 170, 255, 0.6);
+  }
+
+  /* Buttons */
+  button, .dropdown-btn {
+    background: #3a3f55;
+    border: none;
+    border-radius: 8px;
+    color: #82aaff;
+    font-family: 'Fira Code', monospace;
+    font-weight: 600;
+    padding: 12px 20px;
+    cursor: pointer;
+    margin: 8px 6px 0 0;
+    transition: background 0.25s ease;
+    box-shadow: 0 4px 8px rgba(130, 170, 255, 0.2);
+  }
+  button:hover, .dropdown-btn:hover {
+    background: #5c69d6;
+  }
+
+  /* Answers & Reveal */
+  .answer, .secret-message {
+    margin-top: 14px;
+    font-weight: 600;
+    font-family: 'Fira Code', monospace;
+    font-size: 1.1rem;
+    color: #82aaff;
+    user-select: text;
+  }
+
+  /* Dropdown */
+  .dropdown {
+    margin-top: 15px;
+  }
+  .dropdown-content {
+    background: #2b2f48;
+    border-radius: 10px;
+    margin-top: 6px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+  }
+  .dropdown-content.show {
+    max-height: 500px;
+    padding: 12px 18px;
+  }
+
+  /* Images and GIFs */
+  img, iframe {
+    max-width: 100%;
+    border-radius: 14px;
+    margin-top: 18px;
+    box-shadow: 0 6px 18px rgba(130, 170, 255, 0.5);
+  }
+
+  /* Code block style */
+  pre {
+    background: #222437;
+    padding: 18px;
+    border-radius: 12px;
+    overflow-x: auto;
+    font-size: 1rem;
+    margin-top: 10px;
+    color: #c0caf5;
+  }
+
+  /* Link styles */
+  a {
+    color: #82aaff;
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+
+  /* Music Player style */
+  audio {
+    margin-top: 20px;
+    width: 100%;
+    outline: none;
+    border-radius: 8px;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .container {
+      padding: 20px;
+      max-width: 90vw;
+    }
+  }
+
+</style>
+
+</head>
+<body>
+
+  <h1>Happy Birthday, Fee! 🎉💜</h1>
+
+  <div class="container">
+    <p>Hey Momo, my brilliant coder, gamer, and goofball —</p>
+    <p>Your goofiness lights up my days in the best way possible! 😄</p>
+    <img src="https://media.giphy.com/media/3o6ZsYjkW6rQZmRik8/giphy.gif" alt="Cute Goofy GIF" />
+    <p>Whenever you create something new or crack a tough code, my heart skips a beat! 💻❤️</p>
+    <p>Now that I had to make this code… I realized how difficult it really is. Kudos to you, my moon! 🌙✨</p>
+    <p>I am endlessly grateful for your kindness, humor, and all the love you share. You truly are the best hubby ever. 🥰</p>
+    <p>And hey, I think it’s time we finally get a cat — just imagine the coding sessions with a furry little buddy keeping us company! 🐱</p>
+  </div>
+
+  <!-- Dropdown with your poetry (placeholder) -->
+  <div class="container">
+    <button class="dropdown-btn" onclick="toggleDropdown('poetry')">My Poetry for You ❤️</button>
+    <div id="poetry" class="dropdown-content">
+      <p><em>(Please share your poem and I will add it here beautifully.)</em></p>
+    </div>
+  </div>
+
+  <!-- Quiz Section -->
+  <div class="container">
+    <h2>Quick Quiz 🧠</h2>
+    <p>1. What is Fee's favorite programming language?</p>
+    <button onclick="checkAnswer('quiz1', 'a')">a) Python</button>
+    <button onclick="checkAnswer('quiz1', 'b')">b) JavaScript</button>
+    <button onclick="checkAnswer('quiz1', 'c')">c) C++</button>
+    <p id="quiz1-result" class="answer"></p>
+
+    <p>2. What game did Fee recently conquer?</p>
+    <button onclick="checkAnswer('quiz2', 'a')">a) Elden Ring</button>
+    <button onclick="checkAnswer('quiz2', 'b')">b) Senua’s Saga: Hellblade II</button>
+    <button onclick="checkAnswer('quiz2', 'c')">c) Cyberpunk 2077</button>
+    <p id="quiz2-result" class="answer"></p>
+  </div>
+
+  <!-- Riddles Section -->
+  <div class="container">
+    <h2>Riddles to Ponder 🤔</h2>
+    <div>
+      <p><em>I'm light as a feather, yet the strongest man can't hold me for much longer than a minute. What am I?</em></p>
+      <button onclick="toggleRiddleAnswer('riddle1')">Show Answer</button>
+      <p id="riddle1" class="answer" style="display:none;">Your breath! 🌬️</p>
+    </div>
+    <div style="margin-top: 20px;">
+      <p><em>I speak without a mouth and hear without ears. I have nobody, but I come alive with the wind. What am I?</em></p>
+      <button onclick="toggleRiddleAnswer('riddle2')">Show Answer</button>
+      <p id="riddle2" class="answer" style="display:none;">An echo! 🔊</p>
+    </div>
+  </div>
+
+  <!-- Coding Memes -->
+  <div class="container">
+    <h2>Coding & Cat Memes 😹</h2>
+    <button onclick="showNextMeme()">Show me a meme!</button>
+    <div id="meme-container"></div>
+  </div>
+
+  <!-- Secret Message -->
+  <div class="container">
+    <h2>Secret Message 💌</h2>
+    <button onclick="revealSecret()">Click to reveal!</button>
+    <p id="secret-message" class="secret-message" style="opacity: 0; transition: opacity 1.5s ease;">
+      Happy Birthday, my love! You inspire me every day — your creativity, your kindness, your passion. Here’s to many more adventures together. Love you forever, Fee! 💜🚀
+    </p>
+  </div>
+
+  <!-- Music Player -->
+  <div class="container">
+    <h2>Enjoy some music 🎵</h2>
+    <audio controls>
+      <source src="https://cdn.pixabay.com/download/audio/2022/02/23/audio_6a3f1bda7b.mp3?filename=birthday-cake-10807.mp3" type="audio/mpeg" />
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+<script>
+  // Quiz answers
+  const correctAnswers = {
+    quiz1: 'b',
+    quiz2: 'b'
+  };
+
+  function checkAnswer(quizId, choice) {
+    const result = document.getElementById(quizId + '-result');
+    if (choice === correctAnswers[quizId]) {
+      result.textContent = "Correct! 🎉";
+      result.style.color = '#82aaff';
+    } else {
+      result.textContent = "Oops, try again!";
+      result.style.color = '#ff5370';
+    }
+  }
+
+  // Riddle toggle
+  function toggleRiddleAnswer(id) {
+    const el = document.getElementById(id);
+    el.style.display = (el.style.display === 'none' || el.style.display === '') ? 'block' : 'none';
+  }
+
+  // Memes array (coding + cat memes)
+  const memes = [
+    'https://i.imgur.com/3vQ2FhZ.png',  // coding meme 1
+    'https://i.imgur.com/0Lv3p57.png',  // coding meme 2
+    'https://i.imgur.com/3iGvVnP.jpg',  // cat meme 1
+    'https://i.imgur.com/JvIETLD.jpg',  // cat meme 2
+    'https://i.imgur.com/NsjM4kQ.png'   // cat meme 3
+  ];
+  let memeIndex = 0;
+
+  function showNextMeme() {
+    const container = document.getElementById('meme-container');
+    container.innerHTML = `<img src="${memes[memeIndex]}" alt="Meme" />`;
+    memeIndex = (memeIndex + 1) % memes.length;
+  }
+
+  // Secret message reveal
+  function revealSecret() {
+    const msg = document.getElementById('secret-message');
+    msg.style.opacity = 1;
+  }
+
+  // Dropdown toggle
+  function toggleDropdown(id) {
+    const content = document.getElementById(id);
+    content.classList.toggle('show');
+  }
+</script>
+
+</body>
+</html>
